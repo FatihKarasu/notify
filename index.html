@@ -1,0 +1,40 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Notify</title>
+    <link rel="stylesheet" href="notify.css" />
+    <script src="notify.js"></script>
+  </head>
+  <body>
+    <button onclick="onClickHandler()">Click Me</button>
+    <script>
+      onClickHandler = () => {
+        notify(
+          { x: "right", y: "top" },
+          "Title",
+          " Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita alias voluptatibus sit quod hic quasi odit, molestias reprehenderit sequi perferendis ipsum officia eos dolorem vitae. ",
+          3000,
+          "move-left",
+          "move-left",
+          rand(["success", "danger", "info"])
+        );
+        // notify(
+        //   { x: rand(["top", "bottom"]), y: rand(["left", "center", "right"]) },
+        //   "Header",
+        //   "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Optio, fugiat.",
+        //   rand([1000, 1500, 2000, 2500, 3000]),
+        //   rand(["move-down", "move-up", "move-left", "move-right"]),
+        //   rand(["move-down", "move-up", "move-left", "move-right"]),
+        //   rand(["success", "danger", "info"])
+        // );
+      };
+
+      const rand = (arr) => {
+        let index = Math.floor(Math.random() * arr.length);
+        return arr[index];
+      };
+    </script>
+  </body>
+</html>
