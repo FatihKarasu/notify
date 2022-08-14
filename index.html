@@ -11,24 +11,17 @@
     <button onclick="onClickHandler()">Click Me</button>
     <script>
       onClickHandler = () => {
-        notify(
-          { x: "right", y: "top" },
-          "Title",
-          " Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita alias voluptatibus sit quod hic quasi odit, molestias reprehenderit sequi perferendis ipsum officia eos dolorem vitae. ",
-          3000,
-          "move-left",
-          "move-left",
-          rand(["success", "danger", "info"])
-        );
-        // notify(
-        //   { x: rand(["top", "bottom"]), y: rand(["left", "center", "right"]) },
-        //   "Header",
-        //   "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Optio, fugiat.",
-        //   rand([1000, 1500, 2000, 2500, 3000]),
-        //   rand(["move-down", "move-up", "move-left", "move-right"]),
-        //   rand(["move-down", "move-up", "move-left", "move-right"]),
-        //   rand(["success", "danger", "info"])
-        // );
+        setTimeout(() => {
+          notify({
+            x: "left",
+            y: "bottom",
+            title: "Title",
+            duration: 3000,
+            direction: "move-right",
+            out: "move-right",
+            variant: rand(["success", "danger", "info", "warning"]),
+          });
+        }, 100);
       };
 
       const rand = (arr) => {
