@@ -4,36 +4,95 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Notify</title>
+    <link rel="stylesheet" href="doc.css" />
     <link rel="stylesheet" href="notify.css" />
     <script src="notify.js"></script>
+    <script src="doc.js"></script>
   </head>
   <body>
-    <button onclick="onClickHandler()">Click Me</button>
+    <h1>Notify</h1>
+    <div id="generateNotify" class="generate-notify">
+      <div class="form-group">
+        <h5 for="title">Title</h5>
+        <input type="text" name="title" id="title" class="form-control" />
+      </div>
+      <div class="form-group">
+        <h5 for="content">Content</h5>
+        <textarea
+          name="content"
+          id="content"
+          rows="3"
+          class="form-control"
+        ></textarea>
+      </div>
+      <div class="form-group">
+        <h5 for="">Position Y</h5>
+        <input type="radio" value="top" name="positionx" />
+        <label for="top">Top</label>
+        <input type="radio" value="bottom" name="positionx" />
+        <label for="bottom">Bottom</label>
+      </div>
+      <div class="form-group">
+        <h5 for="">Position X</h5>
+        <input type="radio" value="left" name="positiony" />
+        <label for="left">Left</label>
+        <input type="radio" value="right" name="positiony" />
+        <label for="right">Right</label>
+      </div>
+      <div class="form-group">
+        <h5 for="">Direction</h5>
+        <input type="radio" value="move-up" name="direction" />
+        <label for="moveUp">Move Up</label>
+        <input type="radio" value="move-down" name="direction" />
+        <label for="moveDown">Move Down</label>
+        <input type="radio" value="move-left" name="direction" />
+        <label for="moveLeft">Move Left</label>
+        <input type="radio" value="move-right" name="direction" />
+        <label for="moveRight">Move Right</label>
+      </div>
+      <div class="form-group">
+        <h5 for="">Variant</h5>
+        <input type="radio" value="success" name="variant" />
+        <label for="success">Success</label>
+        <input type="radio" value="danger" name="variant" />
+        <label for="danger">Danger</label>
+        <input type="radio" value="info" name="variant" />
+        <label for="info">Info</label>
+        <input type="radio" value="warning" name="variant" />
+        <label for="warning">Warning</label>
+      </div>
+      <button onclick="onClickHandler()" id="clickMe">Click Me</button>
+    </div>
+
+    
+
     <script>
       onClickHandler = () => {
-        notify(
-          { x: "right", y: "top" },
-          "Title",
-          " Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita alias voluptatibus sit quod hic quasi odit, molestias reprehenderit sequi perferendis ipsum officia eos dolorem vitae. ",
-          3000,
-          "move-left",
-          "move-left",
-          rand(["success", "danger", "info"])
-        );
-        // notify(
-        //   { x: rand(["top", "bottom"]), y: rand(["left", "center", "right"]) },
-        //   "Header",
-        //   "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Optio, fugiat.",
-        //   rand([1000, 1500, 2000, 2500, 3000]),
-        //   rand(["move-down", "move-up", "move-left", "move-right"]),
-        //   rand(["move-down", "move-up", "move-left", "move-right"]),
-        //   rand(["success", "danger", "info"])
-        // );
-      };
+        let title = document.getElementById("title").value;
+        let content = document.getElementById("content").value;
+        let positionX = document.querySelector(
+          "input[name='positionx']:checked"
+        ).value;
+        let positionY = document.querySelector(
+          "input[name='positiony']:checked"
+        ).value;
+        let direction = document.querySelector(
+          "input[name='direction']:checked"
+        ).value;
+        let variant = document.querySelector(
+          "input[name='variant']:checked"
+        ).value;
 
-      const rand = (arr) => {
-        let index = Math.floor(Math.random() * arr.length);
-        return arr[index];
+        console.log(variant);
+        notify(
+          { x: positionX, y: positionY },
+          title,
+          content,
+          3000,
+          direction,
+          direction,
+          variant
+        );
       };
     </script>
   </body>
