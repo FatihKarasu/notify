@@ -6,18 +6,15 @@
     "Noto Sans", "Liberation Sans", Arial, sans-serif, "Apple Color Emoji",
     "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
 }
-body {
-  display: grid;
-  place-items: center;
-  background-color: gray;
-}
+
 .notify-container {
   position: fixed;
   display: flex;
   flex-direction: column;
   width: min(90%, 400px);
-  padding: 0.5rem;
+  padding: 0.75rem;
 }
+
 .notify-container.left {
   left: 0;
 }
@@ -41,13 +38,14 @@ body {
   margin-top: 0.5rem;
 }
 .notify-container > .notify {
-  padding: 0.5rem;
   position: relative;
   width: 100%;
   min-height: 100px;
   background-color: aqua;
   transition: all 300ms ease-in-out;
   z-index: 9999;
+  border-radius: 5px;
+  padding: 1rem;
 }
 .notify-container > .notify * {
   transition: all 300ms ease-in-out;
@@ -111,14 +109,14 @@ body {
 
 /*Variants*/
 .notify-container > .notify.success {
-  color: #333;
-  background-color: #d1e7dd;
-  border: 1px solid #badbcc;
+  color: #fff;
+  background-color: #2ecc71;
+  border: 1px solid #2ecc71;
 }
 .notify-container > .notify.danger {
-  color: #333;
-  background-color: #f8d7da;
-  border: 1px solid #f5c2c7;
+  color: #fff;
+  background-color: #e74c3c;
+  border: 1px solid #e74c3c;
 }
 .notify-container > .notify.info {
   color: #333;
@@ -127,6 +125,6 @@ body {
 }
 .notify-container > .notify.warning {
   color: #333;
-  background-color: #fff3cd;
-  border: 1px solid #ffecb5;
+  background-color: #f1c40f;
+  border: 1px solid #f1c40f;
 }
