@@ -7,64 +7,110 @@
     <link rel="stylesheet" href="doc.css" />
     <link rel="stylesheet" href="notify.css" />
     <script src="notify.js"></script>
-    <script src="doc.js"></script>
   </head>
   <body>
-    <h1>Notify</h1>
-    <div id="generateNotify" class="generate-notify">
-      <div class="form-group">
-        <h5 for="title">Title</h5>
-        <input type="text" name="title" id="title" class="form-control" />
+    <div>
+      <h1 class="text-center">Notify</h1>
+      <div id="generateNotify" class="generate-notify">
+        <div class="form-group">
+          <h5 for="title">Title</h5>
+          <input
+            type="text"
+            value="Notify"
+            name="title"
+            id="title"
+            class="form-control"
+          />
+        </div>
+        <div class="form-group">
+          <h5 for="content">Content</h5>
+          <textarea
+            name="content"
+            id="content"
+            rows="3"
+            class="form-control"
+          ></textarea>
+        </div>
+        <div class="form-group">
+          <h5 for="">Position Y</h5>
+          <input id="top" type="radio" value="top" name="positiony" checked />
+          <label for="top">Top</label>
+          <input id="bottom" type="radio" value="bottom" name="positiony" />
+          <label for="bottom">Bottom</label>
+        </div>
+        <div class="form-group">
+          <h5 for="">Position X</h5>
+          <input
+            id="x-left"
+            type="radio"
+            value="left"
+            name="positionx"
+            checked
+          />
+          <label for="x-left">Left</label>
+          <input id="x-center" type="radio" value="center" name="positionx" />
+          <label for="x-center">Center</label>
+          <input id="x-right" type="radio" value="right" name="positionx" />
+          <label for="x-right">Right</label>
+        </div>
+        <div class="form-group">
+          <h5 for="">Enter From</h5>
+          <input id="enter-top" type="radio" value="top" name="enter" />
+          <label for="enter-top">Top</label>
+          <input id="enter-bottom" type="radio" value="bottom" name="enter" />
+          <label for="enter-bottom">Bottom</label>
+          <input
+            id="enter-left"
+            type="radio"
+            value="left"
+            name="enter"
+            checked
+          />
+          <label for="enter-left">Left</label>
+          <input id="enter-right" type="radio" value="right" name="enter" />
+          <label for="enter-right">Right</label>
+        </div>
+        <div class="form-group">
+          <h5 for="">Exit Towards</h5>
+          <input id="exit-top" type="radio" value="top" name="exit" />
+          <label for="exit-top">Top</label>
+          <input id="exit-bottom" type="radio" value="bottom" name="exit" />
+          <label for="exit-bottom">Bottom</label>
+          <input id="exit-left" type="radio" value="left" name="exit" checked />
+          <label for="exit-left">Left</label>
+          <input id="exit-right" type="radio" value="right" name="exit" />
+          <label for="exit-right">Right</label>
+        </div>
+        <div class="form-group">
+          <h5 for="">Variant</h5>
+          <input
+            id="success"
+            type="radio"
+            value="success"
+            name="variant"
+            checked
+          />
+          <label for="success">Success</label>
+          <input id="danger" type="radio" value="danger" name="variant" />
+          <label for="danger">Danger</label>
+          <input id="info" type="radio" value="info" name="variant" />
+          <label for="info">Info</label>
+          <input id="warning" type="radio" value="warning" name="variant" />
+          <label for="warning">Warning</label>
+        </div>
+        <div class="form-group">
+          <h5 for="duration">Duration (miliseconds)</h5>
+          <input
+            type="number"
+            value="0"
+            name="duration"
+            id="duration"
+            class="form-control"
+          />
+        </div>
+        <button onclick="onClickHandler()" id="clickMe">Click Me</button>
       </div>
-      <div class="form-group">
-        <h5 for="content">Content</h5>
-        <textarea
-          name="content"
-          id="content"
-          rows="3"
-          class="form-control"
-        ></textarea>
-      </div>
-      <div class="form-group">
-        <h5 for="">Position Y</h5>
-        <input type="radio" value="top" name="positionx" />
-        <label for="top">Top</label>
-        <input type="radio" value="bottom" name="positionx" />
-        <label for="bottom">Bottom</label>
-      </div>
-      <div class="form-group">
-        <h5 for="">Position X</h5>
-        <input type="radio" value="left" name="positiony" />
-        <label for="left">Left</label>
-        <input type="radio" value="right" name="positiony" />
-        <label for="right">Right</label>
-      </div>
-      <div class="form-group">
-        <h5 for="">Direction</h5>
-        <input type="radio" value="move-up" name="direction" />
-        <label for="moveUp">Move Up</label>
-        <input type="radio" value="move-down" name="direction" />
-        <label for="moveDown">Move Down</label>
-        <input type="radio" value="move-left" name="direction" />
-        <label for="moveLeft">Move Left</label>
-        <input type="radio" value="move-right" name="direction" />
-        <label for="moveRight">Move Right</label>
-      </div>
-      <div class="form-group">
-        <h5 for="">Variant</h5>
-        <input type="radio" value="success" name="variant" />
-        <label for="success">Success</label>
-        <input type="radio" value="danger" name="variant" />
-        <label for="danger">Danger</label>
-        <input type="radio" value="info" name="variant" />
-        <label for="info">Info</label>
-        <input type="radio" value="warning" name="variant" />
-        <label for="warning">Warning</label>
-      </div>
-      <button onclick="onClickHandler()" id="clickMe">Click Me</button>
     </div>
-
-    
 
     <script>
       onClickHandler = () => {
@@ -76,21 +122,22 @@
         let positionY = document.querySelector(
           "input[name='positiony']:checked"
         ).value;
-        let direction = document.querySelector(
-          "input[name='direction']:checked"
-        ).value;
+        let enter = document.querySelector("input[name='enter']:checked").value;
+        let exit = document.querySelector("input[name='exit']:checked").value;
         let variant = document.querySelector(
           "input[name='variant']:checked"
         ).value;
-        notify(
-          { x: positionX, y: positionY },
-          title,
-          content,
-          3000,
-          direction,
-          direction,
-          variant
-        );
+        let duration = document.getElementById("duration").value;
+        notify({
+          x: positionX,
+          y: positionY,
+          title: title,
+          text: content,
+          duration: duration,
+          enter: enter,
+          exit: exit,
+          variant: variant,
+        });
       };
     </script>
   </body>

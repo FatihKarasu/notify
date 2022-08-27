@@ -1,17 +1,22 @@
 const CSSTRANSITION = 300;
 
 const notify = ({
-  x = "left",
+  x = "center",
   y = "top",
   title = "Title",
   text = "",
-  delay = 3000,
-  direction = "move-up",
-  out = "move-down",
+  duration = 3000,
+  enter = "bottom",
+  exit = "top",
   variant = "success",
 }) => {
   let removeTimeout;
-  let closed = false;
+  let isClosing = false;
+
+  if (duration != 0 && duration < 1000) {
+    duration = 1000;
+  }
+
   let container = document.querySelector(`.notify-container.${x}.${y}`);
   if (container == null) {
     container = document.createElement("div");
@@ -20,13 +25,12 @@ const notify = ({
   }
   // Create Notify
   const notifyDiv = document.createElement("div");
-  notifyDiv.classList.add("notify", direction, variant);
+  notifyDiv.classList.add("notify", enter, variant);
   const close = document.createElement("div");
   close.classList.add("close");
   close.addEventListener("click", () => {
-    removeNotify(container, notifyDiv, out);
+    removeNotify();
     clearTimeout(removeTimeout);
-    closed = true;
   });
   notifyDiv.appendChild(close);
   const header = document.createElement("div");
@@ -40,18 +44,6 @@ const notify = ({
     notifyDiv.appendChild(body);
   }
 
-  notifyDiv.addEventListener("mouseenter", () => {
-    clearTimeout(removeTimeout);
-    removeTimeout = null;
-  });
-  notifyDiv.addEventListener("mouseleave", () => {
-    if (!removeTimeout && !closed) {
-      removeTimeout = setTimeout(() => {
-        removeNotify(container, notifyDiv, out);
-      }, delay / 2);
-    }
-  });
-
   if (y == "top") {
     container.appendChild(notifyDiv);
   } else {
@@ -59,23 +51,42 @@ const notify = ({
   }
   notifyDiv.style.height = `${notifyDiv.getBoundingClientRect().height}px`;
   setTimeout(() => {
-    notifyDiv.classList.remove(direction);
+    notifyDiv.classList.remove(enter);
   }, 10);
 
-  removeTimeout = setTimeout(() => {
-    removeNotify(container, notifyDiv, out);
-  }, delay);
-};
+  if (duration != 0) {
+    removeTimeout = setTimeout(() => {
+      removeNotify();
+    }, duration);
 
-const removeNotify = (container, el, direction) => {
-  el.classList.add(direction);
-  setTimeout(() => {
-    el.classList.add(`remove`);
-    setTimeout(() => {
-      container.removeChild(el);
-      if (!container.hasChildNodes()) {
-        document.getElementsByTagName("body")[0].removeChild(container);
+    notifyDiv.addEventListener("mouseenter", () => {
+      clearTimeout(removeTimeout);
+      removeTimeout = null;
+    });
+
+    notifyDiv.addEventListener("mouseleave", () => {
+      if (!removeTimeout && !isClosing) {
+        removeTimeout = setTimeout(() => {
+          removeNotify();
+        }, duration / 2);
       }
-    }, 1000);
-  }, CSSTRANSITION);
+    });
+  }
+
+  const removeNotify = () => {
+    if (isClosing) return;
+    isClosing = true;
+    notifyDiv.classList.add(exit);
+    setTimeout(() => {
+      notifyDiv.classList.add("remove");
+      setTimeout(() => {
+        try {
+          container.removeChild(notifyDiv);
+          if (!container.hasChildNodes()) {
+            document.getElementsByTagName("body")[0].removeChild(container);
+          }
+        } catch (error) {}
+      }, 1000);
+    }, CSSTRANSITION);
+  };
 };

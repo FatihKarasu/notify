@@ -45,20 +45,21 @@
   transition: all 300ms ease-in-out;
   z-index: 9999;
   border-radius: 5px;
-  padding: 1rem;
+  padding: .75rem;
 }
 .notify-container > .notify * {
   transition: all 300ms ease-in-out;
 }
 .notify-container > .notify > .close {
-  content: " \002B";
   position: absolute;
   top: 0;
   right: 0.5rem;
-  transform: rotate(45deg);
   cursor: pointer;
   font-size: 2em;
   font-weight: 500;
+}
+.notify-container > .notify > .close::after {
+  content: "\00D7";
 }
 .notify-container > .notify.remove {
   padding: 0;
@@ -76,33 +77,33 @@
   visibility: hidden;
   opacity: 0;
 }
-.notify-container > .notify > .close::after {
-  content: " \002B";
-}
+
 .notify-container > .notify > .close:hover {
   color: red;
 }
 .notify-container > .notify > .title {
   font-size: 1.25em;
   font-weight: 600;
+  max-width: 90%;
+  min-height: 27px;
 }
 .notify-container > .notify > .body {
   font-size: 0.9em;
-  margin-top: .5rem;
+  margin-top: 0.5rem;
 }
-.notify-container > .notify.move-up {
+.notify-container > .notify.bottom {
   opacity: 0;
   transform: translateY(100%);
 }
-.notify-container > .notify.move-down {
+.notify-container > .notify.top {
   opacity: 0;
   transform: translateY(-100%);
 }
-.notify-container > .notify.move-right {
+.notify-container > .notify.left {
   opacity: 0;
   transform: translateX(-100%);
 }
-.notify-container > .notify.move-left {
+.notify-container > .notify.right {
   opacity: 0;
   transform: translateX(100%);
 }
