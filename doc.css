@@ -1,0 +1,34 @@
+body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background-color: #ecf0f1;
+}
+
+.generate-notify .form-group {
+    margin-bottom: 1rem;
+}
+
+
+.generate-notify .form-group h5 {
+    margin-bottom: 0.5rem;
+}
+
+.generate-notify .form-group .form-control {
+    width: 100%;
+    border: 1px solid #ecf0f1;
+    border-radius: 5px;
+    min-height: 40px;
+}
+
+#clickMe{
+    cursor: pointer;
+    background-color: #2980b9;
+    color: #fff;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    font-size: 1rem;
+}
